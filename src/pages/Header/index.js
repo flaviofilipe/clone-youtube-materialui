@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     makeStyles,
     AppBar,
@@ -14,6 +14,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Apps from '@material-ui/icons/Apps';
 import MoreVert from '@material-ui/icons/MoreVert';
 import VideoCall from '@material-ui/icons/VideoCall';
+
+import { useDispatch } from 'react-redux';
+
+import { Creators as UserSettingsCreators } from '../../store/ducks/userSettings';
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -35,9 +39,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Header({ darkMode, setDarkMode }) {
+export default function Header() {
+    const [darkMode, setDarkMode] = useState(false);
     const classes = useStyles();
     const theme = useTheme();
+
+    const dispach = useDispatch();
+
+    useEffect(() => { dispach(UserSettingsCreators.setDarkMode(darkMode)); }, [darkMode]);
+
     return (
         <AppBar color='inherit' className={classes.appBar}>
             <Toolbar>

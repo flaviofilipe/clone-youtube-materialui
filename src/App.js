@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
+
+import { useSelector } from 'react-redux';
 
 import Home from './pages/Home';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const { dark_mode } = useSelector(state => state.userSettings);
 
   const theme = createMuiTheme({
     spacing: 4,
     palette: {
-      type: darkMode ? 'dark' : 'light',
+      type: dark_mode ? 'dark' : 'light',
       primary: {
         main: '#f44336',
       },
@@ -17,16 +19,16 @@ function App() {
         main: '#3EA6FF',
       },
       background: {
-        default: darkMode ? '#232323' : '#FFF',
-        dark: darkMode ? '#181818' : '#f4f6f8',
-        paper: darkMode ? '#232323' : '#FFF',
+        default: dark_mode ? '#232323' : '#FFF',
+        dark: dark_mode ? '#181818' : '#f4f6f8',
+        paper: dark_mode ? '#232323' : '#FFF',
       },
     },
   });
 
   return (
     <ThemeProvider theme={theme}>
-      <Home darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Home />
     </ThemeProvider>
   );
 }

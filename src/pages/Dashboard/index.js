@@ -104,7 +104,7 @@ export default function Dashboard() {
 
             <Grid container spacing={4}>
                 {videos.map((item, index) => (
-                    <Grid item lg={3} md={4} sm={6} xs={12}>
+                    <Grid key={item.id} item lg={3} md={4} sm={6} xs={12}>
                         <CardPreviewVideos item={item} />
                     </Grid>
                 ))}

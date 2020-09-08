@@ -16,11 +16,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Home({ darkMode, setDarkMode }) {
+function Home() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+            <Header />
             <Box display='flex'>
                 <Hidden mdDown>
                     <CustomDrawer />
